@@ -1,15 +1,18 @@
 services:
   web:
+    image: daurkas/bi_test_app:web
     build: .
     environment:
       MYENV: EXAMPLE
     volumes:
       - .:/code
   web_migrate:
+    image: daurkas/bi_test_app:web-migrate
     extends:
       service: web
     command: python manage.py migrate
   web_run:
+    image: daurkas/bi_test_app:web-run
     extends:
       service: web
     command: python manage.py runserver 0.0.0.0:8000
